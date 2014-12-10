@@ -12,7 +12,6 @@ Hi, I am unique: {{ uniqid() }}.
 And {{ floor(7.7) }} is floor of 7.7.
 ```
 
-
 ## Extend
 
 You can control allowed PHP functions by adding new ones like this:
