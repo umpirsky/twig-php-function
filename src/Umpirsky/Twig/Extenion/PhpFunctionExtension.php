@@ -19,8 +19,6 @@ class PhpFunctionExtension extends Twig_Extension
         'crc32',
         'crypt',
         'hex2bin',
-        'html_​entity_​decode',
-        'htmlentities',
         'md5',
         'sha1',
         'strpos',
@@ -43,9 +41,9 @@ class PhpFunctionExtension extends Twig_Extension
         );
     }
 
-    public function allowFunction($functions)
+    public function allowFunction($function)
     {
-        $this->functions[] = $functions;
+        $this->functions[] = $function;
     }
 
     public function allowFunctions(array $functions)
