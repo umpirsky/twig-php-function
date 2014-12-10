@@ -13,7 +13,7 @@ class PhpFunctionExtensionTest extends PHPUnit_Framework_TestCase
         ));
 
         $this->twig = new Twig_Environment($loader);
-        $this->twig->addExtension(new Umpirsky\Twig\Extenion\PhpFunctionExtension());
+        $this->twig->addExtension(new Umpirsky\Twig\Extension\PhpFunctionExtension());
     }
 
     /**

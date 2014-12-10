@@ -1,6 +1,6 @@
 <?php
 
-namespace Umpirsky\Twig\Extenion;
+namespace Umpirsky\Twig\Extension;
 
 use Twig_Extension;
 use Twig_SimpleFunction;

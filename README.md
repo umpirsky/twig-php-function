@@ -19,7 +19,7 @@ As you can see, just prefix PHP function with `php_` prefix and that's it.
 You can control allowed PHP functions by adding new ones like this:
 
 ```php
-$extension = new Umpirsky\Twig\Extenion\PhpFunctionExtension();
+$extension = new Umpirsky\Twig\Extension\PhpFunctionExtension();
 $extension->allowFunction('hash_hmac');
 
 ```
@@ -27,7 +27,7 @@ $extension->allowFunction('hash_hmac');
 or restrict what functions are allowed like this:
 
 ```php
-$extension = new Umpirsky\Twig\Extenion\PhpFunctionExtension(['floor', 'ceil']);
+$extension = new Umpirsky\Twig\Extension\PhpFunctionExtension(['floor', 'ceil']);
 
 ```
 
