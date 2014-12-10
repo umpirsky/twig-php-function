@@ -36,9 +36,13 @@ class PhpFunctionExtension extends Twig_Extension
 
     public function getFunctions()
     {
-        return array(
-            new Twig_SimpleFunction('php_*', array($this, 'run')),
-        );
+        $twigFunctions = array();
+
+        foreach ($this->functions as $function) {
+            $twigFunctions[] = new Twig_SimpleFunction($function, $function);
+        }
+
+        return $twigFunctions;
     }
 
     public function allowFunction($function)
@@ -49,28 +53,6 @@ class PhpFunctionExtension extends Twig_Extension
     public function allowFunctions(array $functions)
     {
         $this->functions = $functions;
-    }
-
-    public function run($function)
-    {
-        if (!function_exists($function)) {
-            throw new BadFunctionCallException(sprintf(
-                'Function "%s" does not exist.',
-                $function
-            ));
-        }
-
-        if (!in_array($function, $this->functions)) {
-            throw new BadFunctionCallException(sprintf(
-                'Function "%s" is not allowed.',
-                $function
-            ));
-        }
-
-        $parameters = func_get_args();
-        array_shift($parameters);
-
-        return call_user_func_array($function, $parameters);
     }
 
     public function getName()
