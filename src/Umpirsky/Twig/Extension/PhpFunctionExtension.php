@@ -25,6 +25,7 @@ class PhpFunctionExtension extends Twig_Extension
         'strrpos',
         'ucwords',
         'wordwrap',
+        'gettype',
     );
 
     public function __construct(array $functions = array())
