@@ -47,3 +47,44 @@ $extension = new Umpirsky\Twig\Extension\PhpFunctionExtension(['floor', 'ceil'])
 ```
 
 If you think that some function should be allowed/not allowed, feel free to [raise issue](https://github.com/umpirsky/twig-php-function/issues/new) or submit a pull request.
+
+## Integration
+
+#### Symfony
+
+You can easily include this extension as a service in a Symfony project.
+
+First download the extension using composer :
+
+`composer require umpirsky/twig-php-function`
+
+Then you can include it in in the `app/config/services.yml` file (or any other `services.yml`)
+
+```yaml
+parameters:
+    twig.extension.php_function.class: Umpirsky\Twig\Extension\PhpFunctionExtension
+
+services:
+    twig.extension.php_function:
+        class: "%twig.extension.php_function.class%"
+        public: false
+        tags:
+            - { name: twig.extension }
+```
+
+If you wish to automatically enable some functions, feel free to call the `allowFunctions()` method :
+
+
+```yaml
+parameters:
+    twig.extension.php_function.class: Umpirsky\Twig\Extension\PhpFunctionExtension
+
+services:
+    twig.extension.php_function:
+        class: "%twig.extension.php_function.class%"
+        public: false
+        tags:
+            - { name: twig.extension }
+        calls:
+            - [allowFunction, ["hash_hmac"]]
+```
