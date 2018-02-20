@@ -41,7 +41,7 @@ class PhpFunctionExtensionTest extends \PHPUnit\Framework\TestCase
     {
         $phpFunctionExt = new PhpFunctionExtension(['sha1', 'md5']);
 
-        $this->assertInstanceOf('Umpirsky\Twig\Extension\PhpFunctionExtension', $phpFunctionExt);
+        $this->assertInstanceOf(PhpFunctionExtension::class, $phpFunctionExt);
     }
 
     public function testGetName()

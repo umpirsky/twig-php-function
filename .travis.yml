@@ -10,4 +10,4 @@ install:
 
 script:
     - php bin/phpspec run -f pretty
-    - php vendor/phpunit/phpunit/phpunit
+    - php bin/phpunit
