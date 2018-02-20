@@ -3,10 +3,11 @@ language: php
 php:
     - 7.0
     - 7.1
+    - 7.2
 
 install:
     - composer install
 
 script:
     - php bin/phpspec run -f pretty
-    - php ./bin/phpunit tests
+    - php vendor/phpunit/phpunit/phpunit

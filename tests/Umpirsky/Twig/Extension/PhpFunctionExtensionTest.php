@@ -1,11 +1,16 @@
 <?php
 
-class PhpFunctionExtensionTest extends PHPUnit_Framework_TestCase
+use Umpirsky\Twig\Extension\PhpFunctionExtension;
+
+class PhpFunctionExtensionTest extends \PHPUnit\Framework\TestCase
 {
     private $twig;
 
-    public function setUp()
+    private $phpFunctionExt;
+
+    protected function setUp()
     {
+        $this->phpFunctionExt = new PhpFunctionExtension();
         $loader = new Twig_Loader_Array(array(
             'md5'   => '{{ md5("umpirsky") }} is md5 of umpirsky.',
             'floor' => '{{ floor(7.7) }} is floor of 7.7.',
@@ -13,7 +18,7 @@ class PhpFunctionExtensionTest extends PHPUnit_Framework_TestCase
         ));
 
         $this->twig = new Twig_Environment($loader);
-        $this->twig->addExtension(new Umpirsky\Twig\Extension\PhpFunctionExtension());
+        $this->twig->addExtension($this->phpFunctionExt);
     }
 
     /**
@@ -25,6 +30,23 @@ class PhpFunctionExtensionTest extends PHPUnit_Framework_TestCase
             $this->twig->render($key),
             $expected
         );
+    }
+
+    public function testAllowFunction()
+    {
+        $this->assertNull($this->phpFunctionExt->allowFunction('allowed_function'));
+    }
+
+    public function testConstructorWithAllowedFunction()
+    {
+        $phpFunctionExt = new PhpFunctionExtension(['sha1', 'md5']);
+
+        $this->assertInstanceOf('Umpirsky\Twig\Extension\PhpFunctionExtension', $phpFunctionExt);
+    }
+
+    public function testGetName()
+    {
+        $this->assertSame('php_function', $this->phpFunctionExt->getName());
     }
 
     public function renderProvider()
