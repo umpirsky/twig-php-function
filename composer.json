@@ -14,13 +14,13 @@
         "twig/twig": "^1.28 || ^2.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "^2.0",
+        "phpspec/phpspec": "^4.3.4 || ^5.0 || ^6.0",
         "phpunit/phpunit": "^6.5"
     },
     "config": {
         "bin-dir": "bin"
     },
     "autoload": {
-        "psr-0": { "Umpirsky\\": "src/" }
+        "psr-4": { "Umpirsky\\Twig\\Extension\\": "src/Umpirsky/Twig/Extension/" }
     }
 }
