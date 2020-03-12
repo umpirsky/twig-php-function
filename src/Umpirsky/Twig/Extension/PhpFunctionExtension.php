@@ -8,7 +8,7 @@ use BadFunctionCallException;
 
 class PhpFunctionExtension extends Twig_Extension
 {
-    private $functions = array(
+    private $functions = [
         'uniqid',
         'floor',
         'ceil',
@@ -26,9 +26,9 @@ class PhpFunctionExtension extends Twig_Extension
         'ucwords',
         'wordwrap',
         'gettype',
-    );
+    ];
 
-    public function __construct(array $functions = array())
+    public function __construct(array $functions = [])
     {
         if ($functions) {
             $this->allowFunctions($functions);
@@ -37,7 +37,7 @@ class PhpFunctionExtension extends Twig_Extension
 
     public function getFunctions()
     {
-        $twigFunctions = array();
+        $twigFunctions = [];
 
         foreach ($this->functions as $function) {
             $twigFunctions[] = new Twig_SimpleFunction($function, $function);

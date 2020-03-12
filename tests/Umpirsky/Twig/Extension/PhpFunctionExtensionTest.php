@@ -11,11 +11,11 @@ class PhpFunctionExtensionTest extends \PHPUnit\Framework\TestCase
     protected function setUp()
     {
         $this->phpFunctionExt = new PhpFunctionExtension();
-        $loader = new Twig_Loader_Array(array(
+        $loader = new Twig_Loader_Array([
             'md5'   => '{{ md5("umpirsky") }} is md5 of umpirsky.',
             'floor' => '{{ floor(7.7) }} is floor of 7.7.',
             'ceil'  => '{{ ceil(6.7) }} is ceil of 6.7.',
-        ));
+        ]);
 
         $this->twig = new Twig_Environment($loader);
         $this->twig->addExtension($this->phpFunctionExt);
@@ -51,10 +51,10 @@ class PhpFunctionExtensionTest extends \PHPUnit\Framework\TestCase
 
     public function renderProvider()
     {
-        return array(
-            array('md5', 'f0d0a45e43690965bd6689a2ae3c8943 is md5 of umpirsky.'),
-            array('floor', '7 is floor of 7.7.'),
-            array('ceil', '7 is ceil of 6.7.'),
-        );
+        return [
+            ['md5', 'f0d0a45e43690965bd6689a2ae3c8943 is md5 of umpirsky.'],
+            ['floor', '7 is floor of 7.7.'],
+            ['ceil', '7 is ceil of 6.7.'],
+        ];
     }
 }
