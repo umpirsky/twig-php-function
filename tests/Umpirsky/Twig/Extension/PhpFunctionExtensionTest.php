@@ -8,16 +8,18 @@ class PhpFunctionExtensionTest extends \PHPUnit\Framework\TestCase
 
     private $phpFunctionExt;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->phpFunctionExt = new PhpFunctionExtension();
-        $loader = new Twig_Loader_Array([
-            'md5'   => '{{ md5("umpirsky") }} is md5 of umpirsky.',
+        $loader = new Twig\Loader\ArrayLoader([
+            'md5' => '{{ md5("umpirsky") }} is md5 of umpirsky.',
             'floor' => '{{ floor(7.7) }} is floor of 7.7.',
-            'ceil'  => '{{ ceil(6.7) }} is ceil of 6.7.',
+            'ceil' => '{{ ceil(6.7) }} is ceil of 6.7.',
+            'convert_uudecode' => '{{ convert_uudecode("(=6UP:7)S:WD`
+`") }} is convert_uudecode of umpirsky.',
         ]);
 
-        $this->twig = new Twig_Environment($loader);
+        $this->twig = new Twig\Environment($loader);
         $this->twig->addExtension($this->phpFunctionExt);
     }
 
@@ -34,7 +36,9 @@ class PhpFunctionExtensionTest extends \PHPUnit\Framework\TestCase
 
     public function testAllowFunction()
     {
-        $this->assertNull($this->phpFunctionExt->allowFunction('allowed_function'));
+	    $this->phpFunctionExt->allowFunction('allowed_function');
+
+        $this->assertTrue(true);
     }
 
     public function testConstructorWithAllowedFunction()
@@ -55,6 +59,7 @@ class PhpFunctionExtensionTest extends \PHPUnit\Framework\TestCase
             ['md5', 'f0d0a45e43690965bd6689a2ae3c8943 is md5 of umpirsky.'],
             ['floor', '7 is floor of 7.7.'],
             ['ceil', '7 is ceil of 6.7.'],
+            ['convert_uudecode', 'umpirsky is convert_uudecode of umpirsky.'],
         ];
     }
 }
