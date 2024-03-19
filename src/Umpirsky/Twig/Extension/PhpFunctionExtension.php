@@ -2,20 +2,18 @@
 
 namespace Umpirsky\Twig\Extension;
 
-use Twig_Extension;
-use Twig_SimpleFunction;
-use BadFunctionCallException;
+use Twig\TwigFunction;
 
-class PhpFunctionExtension extends Twig_Extension
+class PhpFunctionExtension extends \Twig\Extension\AbstractExtension
 {
-    private $functions = [
+    private array $functions = [
         'uniqid',
         'floor',
         'ceil',
         'addslashes',
         'chr',
-        'chunk_​split',
-        'convert_​uudecode',
+        'chunk_split',
+        'convert_uudecode',
         'crc32',
         'crypt',
         'hex2bin',
@@ -35,28 +33,28 @@ class PhpFunctionExtension extends Twig_Extension
         }
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         $twigFunctions = [];
 
         foreach ($this->functions as $function) {
-            $twigFunctions[] = new Twig_SimpleFunction($function, $function);
+            $twigFunctions[] = new TwigFunction($function, $function);
         }
 
         return $twigFunctions;
     }
 
-    public function allowFunction($function)
+    public function allowFunction($function): void
     {
         $this->functions[] = $function;
     }
 
-    public function allowFunctions(array $functions)
+    public function allowFunctions(array $functions): void
     {
         $this->functions = $functions;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'php_function';
     }
