@@ -3,17 +3,18 @@
 namespace spec\Umpirsky\Twig\Extension;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use Twig\Extension\AbstractExtension;
+use Umpirsky\Twig\Extension\PhpFunctionExtension;
 
 class PhpFunctionExtensionSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Umpirsky\Twig\Extension\PhpFunctionExtension');
+        $this->shouldHaveType(PhpFunctionExtension::class);
     }
 
     function it_is_a_Twig_extension()
     {
-        $this->shouldHaveType('Twig_Extension');
+        $this->shouldHaveType(AbstractExtension::class);
     }
 }
